@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Évasion Tour{% endblock %}
+
+{% block body %}
+   <section class="test">
+        <div class="titre">
+            <img src="{{ asset("/img/th.jpeg") }}" alt="logo" width="100px" />
+            <h1>Évasion Tour</h1>
+        </div>
+        <div class="présentation">
+            <div class="description">
+                <h2>Description de notre agence:</h2>
+                <h3>
+                    Évasion Tour est une agence de voyage spécialisée dans les expériences authentiques et
+                    personnalisées à travers le monde. Notre mission est de transformer chaque voyage en une aventure
+                    unique, en proposant des destinations variées, des itinéraires sur mesure et des services haut de
+                    gamme adaptés aux envies de nos clients.
+                </h3>
+
+                <h3>
+                    Vous rêviez d'explorer des paysages exotiques, de découvrir des cultures locales, ou de profiter
+                    d'escapades relaxantes, Évasion Tour vous accompagne à chaque étape de votre voyage, avec une équipe
+                    d'experts passionnés et un réseau mondial de partenaires de confiance.
+                </h3>
+            </div>
+            <div class="valeurs">
+                <h2>Nos valeurs:</h2>
+                <h3>
+                    Chez Évasion Tour, nous croyons en un tourisme authentique et respectueux. Nos valeurs sont simples
+                    et essentielles :
+                </h3>
+                <h3>
+                    <ul>
+                        <li>
+                            Excellence : Offrir un service de qualité, avec une attention particulière aux détails pour
+                            chaque voyage.
+                        </li>
+                        <li>Personnalisation : Créer des voyages uniques, adaptés aux envies et besoins de chacun.</li>
+                        <li>
+                            Authenticité : Proposer des expériences locales et culturelles véritables, loin des sentiers
+                            battus.
+                        </li>
+                        <li>
+                            Responsabilité : Respecter l’environnement et les communautés locales, en favorisant un
+                            tourisme durable.
+                        </li>
+                        <li>
+                            Confiance : Être transparents dans nos offres et établir des relations basées sur la
+                            confiance.
+                        </li>
+                    </ul>
+                </h3>
+            </div>
+            <div class="effectif">
+                <h2>Notre effectif:</h2>
+                <h3>
+                    Chez Évasion Tour, notre équipe est composée de passionnés du voyage, dédiés à créer des expériences
+                    inoubliables pour nos clients. Chaque membre apporte son expertise unique pour faire de chaque
+                    aventure une réussite.
+                </h3>
+                <h3>
+                    <ul>
+                        <li>
+                            Conseillers en voyage : Experts des destinations, ils vous aident à concevoir des
+                            itinéraires sur mesure, adaptés à vos envies et à vos besoins.
+                        </li>
+                        <li>
+                            Planificateurs d'aventures : Spécialistes des séjours uniques, ils organisent vos
+                            expériences et activités, en prenant soin de chaque détail logistique.
+                        </li>
+                        <li>
+                            Experts locaux : Partenaires de confiance sur place, ils vous font découvrir l'essence des
+                            cultures locales et vous accompagnent tout au long de votre séjour.
+                        </li>
+                        <li>
+                            Service client : Toujours à votre écoute, notre équipe assure un suivi personnalisé avant,
+                            pendant et après votre voyage, pour garantir votre satisfaction.
+                        </li>
+                    </ul>
+                </h3>
+                <img src="{{ asset("/img/istockphoto-1443245439-612x612.jpg") }}" alt="effectif" width="100%" />
+            </div>
+        </div>
+        <div class="carousel">
+        <div class="test">
+            <h2>Suggestions de voyages:</h2>
+        </div>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="{{ asset("/img/Los-Angeles-Santa-Monica.jpg.webp") }}" alt="Los-Angeles-Santa-Monica" />
+                    
+                    <h3 class="testt">Description:</h3>
+                    <p>
+                        Santa Monica, situé à Los Angeles, est un quartier côtier vibrant célèbre pour ses plages
+                        magnifiques, sa jetée emblématique, et ses boutiques raffinées. C’est un lieu idéal pour
+                        profiter du soleil californien tout en explorant une scène culinaire animée et des attractions
+                        culturelles diversifiées.
+                    </p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ asset("/img/santorin.jpeg") }}" alt="santorin" />
+                    <h3 class="testt">Description:</h3>
+                    <p>
+                        Santorin, une île grecque des Cyclades, est réputée pour ses spectaculaires paysages
+                        volcaniques, ses maisons blanches aux toits bleus perchées sur des falaises surplombant la mer
+                        Égée. Son ambiance romantique et ses couchers de soleil à couper le souffle en font une
+                        destination prisée pour des vacances inoubliables.
+                    </p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ asset("/img/bali.jpg") }}" alt="temple balinéen" />
+                    <h3 class="testt">Description:</h3>
+                    <p>
+                        Le temple de Tanah Lot, situé à Bali, est un site sacré perché sur un rocher en bord de mer,
+                        offrant des vues époustouflantes sur l'océan Indien. Célèbre pour ses paysages spectaculaires et
+                        ses cérémonies religieuses traditionnelles, il est un lieu emblématique de la culture balinaise.
+                    </p>
+                </div>
+            </div>
+            <button class="carousel-prev">&#10094;</button>
+            <button class="carousel-next">&#10095;</button>
+            <script>
+                const prevButton = document.querySelector(".carousel-prev");
+                const nextButton = document.querySelector(".carousel-next");
+                const container = document.querySelector(".carousel-container");
+                const slides = document.querySelectorAll(".carousel-slide");
+                let index = 0;
+
+                function updateCarousel() {
+                    const offset = -index * 100;
+                    container.style.transform = `translateX(${offset}%)`;
+                }
+
+                prevButton.addEventListener("click", () => {
+                    index = index > 0 ? index - 1 : slides.length - 1;
+                    updateCarousel();
+                });
+
+                nextButton.addEventListener("click", () => {
+                    index = index < slides.length - 1 ? index + 1 : 0;
+                    updateCarousel();
+                });
+            </script>
+        </div>
+
+        <div class="appel-action">
+            <h2>Contactez-nous et Trouvez votre aventure</h2>
+            <p>
+                Nous sommes là pour répondre à vos questions et vous aider à planifier le voyage de vos rêves.
+                Remplissez le formulaire ci-dessous ou utilisez notre outil de recherche pour découvrir nos offres.
+            </p>
+            <form action="/submit-form" method="post">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required />
+                <br />
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required />
+                <br />
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <br />
+                <button type="submit">Envoyer</button>
+            </form>
+            <hr />
+            <h2>Recherchez votre voyage</h2>
+            <form action="/search-travel" method="get">
+                <label for="destination">Destination :</label>
+                <input type="text" id="destination" name="destination" placeholder="Exemple : Bali" />
+                <br />
+                <label for="dates">Dates :</label>
+                <input type="text" id="dates" name="dates" placeholder="Exemple : 01/10/2024 - 15/10/2024" />
+                <br />
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

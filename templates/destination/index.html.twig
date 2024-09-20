@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ destination.name }} - Destination Details{% endblock %}
+
+{% block body %}
+
+    <!-- Titre Principal -->
+    <section class="titre">
+        <img src="{{ asset('/img/th.jpeg') }}" alt="Logo Évasion Tour" width="100px" />
+        <h1 class="Bali">Découvrez {{ destination.name }}</h1>
+    </section>
+
+    <!-- Présentation de la Destination -->
+    <section class="présentation">
+        <!-- Description -->
+        <h2>À propos de {{ destination.name }}</h2>
+        <p>{{ destination.description }}</p>
+
+        <!-- Activités -->
+        <h2>Les activités à {{ destination.name }}</h2>
+        <ul>
+            {% for activity in destination.activities %}
+                <li>{{ activity }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Points d'Intérêt -->
+        <h2>Les points d'intérêt</h2>
+        <ul>
+            {% for point in destination.points_of_interest %}
+                <li>{{ point }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Galerie d'Images en Carousel -->
+        <h2>Images</h2>
+        <div class="carousel">
+            <div class="carousel-container">
+                {% for image in destination.gallery %}
+                    <div class="carousel-slide">
+                        <img src="{{ asset('img/' ~ image) }}" alt="Image de {{ destination.name }}" loading="lazy">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-prev">&#10094;</button>
+            <button class="carousel-next">&#10095;</button>
+        </div>
+
+        <!-- Carte de la Destination -->
+        <h2>La carte de {{ destination.name }}</h2>
+        <div class="map">
+        <iframe src="{{ destination.map_embed_url }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Script pour le Carousel -->
+    <script>
+        const prevButton = document.querySelector(".carousel-prev");
+        const nextButton = document.querySelector(".carousel-next");
+        const container = document.querySelector(".carousel-container");
+        const slides = document.querySelectorAll(".carousel-slide");
+        let index = 0;
+
+        function updateCarousel() {
+            const offset = -index * 100;
+            container.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevButton.addEventListener("click", () => {
+            index = index > 0 ? index - 1 : slides.length - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener("click", () => {
+            index = index < slides.length - 1 ? index + 1 : 0;
+            updateCarousel();
+        });
+    </script>
+
+
+{% endblock %}
